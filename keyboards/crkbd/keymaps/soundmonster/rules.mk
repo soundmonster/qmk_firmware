@@ -1,5 +1,6 @@
 RGBLIGHT_ENABLE = yes
 MOUSEKEY_ENABLE = yes
+NKRO_ENABLE     = yes # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 
 # If you want to change the display of OLED, you need to change here
 SRC +=  ./lib/glcdfont.c \
