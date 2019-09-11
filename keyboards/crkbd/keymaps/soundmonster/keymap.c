@@ -21,8 +21,8 @@ extern uint8_t is_master;
 // Custom keycodes for layer keys
 // Dual function escape with Lower
 #define KC_LESC LT(_LOWER, KC_ESC)
-// Dual functions colon with Raise
-#define KC_RCLN LT(_RAISE, KC_COLON)
+// Dual function control with enter
+#define KC_CENT RCTL_T(KC_ENT)
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
     KC_LSPO,  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+---0---+------+-------+--------|
-                                 KC_LGUI,KC_LESC,KC_SPC,  KC_ENT,KC_RCLN,KC_RALT \
+                               KC_LGUI,KC_LESC,KC_SPC,  KC_CENT,RAISE,KC_RALT \
                               //`--------------------'  `--------------------'
   ),
 
