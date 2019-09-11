@@ -23,6 +23,8 @@ extern uint8_t is_master;
 #define KC_LESC LT(_LOWER, KC_ESC)
 // Dual function control with enter
 #define KC_CENT RCTL_T(KC_ENT)
+// Dual function space with shift
+#define KC_SPSH LSFT_T(KC_SPC)
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -46,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
     KC_LSPO,  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+---0---+------+-------+--------|
-                               KC_LGUI,KC_LESC,KC_SPC,  KC_CENT,RAISE,KC_RALT \
+                              KC_LGUI,KC_LESC,KC_SPSH,  KC_CENT,RAISE,KC_RALT \
                               //`--------------------'  `--------------------'
   ),
 
