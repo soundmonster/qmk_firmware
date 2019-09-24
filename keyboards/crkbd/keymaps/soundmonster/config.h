@@ -28,7 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-#define SSD1306OLED
+// #define SSD1306OLED
+#undef USE_I2C
+#undef SSD1306OLED
 
 #define USE_SERIAL_PD2
 
@@ -44,3 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
 #endif
+
+#define OLED_FONT_H "keyboards/crkbd/keymaps/drashna/glcdfont.c"
+// #define OLED_FONT_WIDTH 5
+// #define OLED_FONT_HEIGHT 7

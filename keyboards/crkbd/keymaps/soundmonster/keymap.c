@@ -7,6 +7,10 @@ extern keymap_config_t keymap_config;
 extern rgblight_config_t rgblight_config;
 #endif
 
+#ifdef OLED_DRIVER_ENABLE
+static uint32_t oled_timer = 0;
+#endif
+
 extern uint8_t is_master;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -159,10 +163,64 @@ void iota_gfx_task_user(void) {
 }
 #endif//SSD1306OLED
 
+#ifdef OLED_DRIVER_ENABLE
+oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
+
+void render_space(void) {
+    oled_write_P(PSTR("     "), false);
+}
+
+void render_layer_state(void) {
+    oled_write_P(PSTR("LAYER"), false);
+    oled_write_P(PSTR("Qwrty"), layer_state_is(_QWERTY));
+    oled_write_P(PSTR("Lower"), layer_state_is(_LOWER));
+    oled_write_P(PSTR("Raise"), layer_state_is(_RAISE));
+    oled_write_P(PSTR("Adjst"), layer_state_is(_ADJUST));
+}
+
+void render_mod_status(uint8_t modifiers) {
+    oled_write_P(PSTR("Mods:"), false);
+    oled_write_P(PSTR(" SHFT"), (modifiers & MOD_MASK_SHIFT));
+    oled_write_P(PSTR(" CTRL"), (modifiers & MOD_MASK_CTRL));
+    oled_write_P(PSTR(" ALT "), (modifiers & MOD_MASK_ALT));
+    oled_write_P(PSTR(" GUI "), (modifiers & MOD_MASK_GUI));
+}
+
+void render_status_main(void) {
+    /* Show Keyboard Layout  */
+    render_layer_state();
+    render_space();
+    render_mod_status(get_mods()|get_oneshot_mods());
+}
+
+void render_status_secondary(void) {
+    /* Show Keyboard Layout  */
+    render_layer_state();
+    render_space();
+    render_mod_status(get_mods()|get_oneshot_mods());
+}
+
+void oled_task_user(void) {
+    if (timer_elapsed32(oled_timer) > 30000) {
+        oled_off();
+        return;
+    }
+#ifndef SPLIT_KEYBOARD
+    else { oled_on(); }
+#endif
+
+    if (is_master) {
+        render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
+    } else {
+        render_status_secondary();
+    }
+}
+
+#endif
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
-#ifdef SSD1306OLED
-    set_keylog(keycode, record);
+#ifdef OLED_DRIVER_ENABLE
+        oled_timer = timer_read32();
 #endif
     // set_timelog();
   }
