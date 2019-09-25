@@ -1,7 +1,7 @@
 #! /usr/bin/env elixir
 
 skipcols = 0
-showcols = 32
+showcols = 16
 
 colmax = 32
 rowmax = 7
@@ -22,11 +22,23 @@ fonth = 8
   |> String.replace("1", "#")
   |> String.pad_leading(8, " ")
 end)
-|> Enum.chunk_every(colmax)
+|> Enum.chunk_every(colmax * fontw)
 |> Enum.zip()
 |> Enum.map(&Tuple.to_list/1)
-|> Enum.map(fn line ->
-  line |> Enum.drop(skipcols) |> Enum.take(showcols)
-end)
+|> Enum.map(&Enum.reverse/1)
 |> Enum.map(&Enum.join/1)
 |> Enum.each(&IO.puts/1)
+
+## Extract glyphs
+# |> Enum.chunk_every(fontw)
+# |> Enum.drop(65)
+# |> Enum.take(15)
+# |> Enum.flat_map(fn glyph ->
+#   glyph
+#   |> Enum.map(&String.to_charlist/1)
+#   |> Enum.map(&Enum.reverse/1)
+#   |> Enum.zip()
+#   |> Enum.map(&Tuple.to_list/1)
+#   |> Enum.map(&to_string/1)
+# end)
+# |> Enum.each(&IO.puts/1)
