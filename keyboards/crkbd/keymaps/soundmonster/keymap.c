@@ -34,7 +34,9 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   RGBRST,
-  KC_RACL // right alt / colon
+  KC_RACL, // right alt / colon
+  KC_EPIPE, // Elixir pipe |>
+  KC_ARRR // Right arrow ->
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -54,9 +56,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------------.                ,-----------------------------------------.
      KC_ESC,  KC_1, KC_2,   KC_3,   KC_4,   KC_5,                    KC_6,  KC_7,  KC_8,  KC_9,  KC_0, KC_DEL,
   //|------+------+-------+-------+-------+-------|                |------+------+------+------+------+------|
-    KC_LCTL, KC_NO,KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,                KC_LEFT,KC_DOWN,KC_UP,KC_RIGHT,KC_NO,KC_NO,
+    KC_LCTL, KC_NO,KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,                KC_LEFT,KC_DOWN,KC_UP,KC_RIGHT,KC_EPIPE,KC_NO,
   //|------+------+-------+-------+-------+-------|                |------+------+------+------+------+------|
-    KC_LSFT, KC_NO,KC_BTN2,KC_WH_D,KC_WH_U,KC_BTN1,                KC_HOME,KC_PGDN,KC_PGUP,KC_END,KC_NO,KC_NO,
+    KC_LSFT, KC_NO,KC_BTN2,KC_WH_D,KC_WH_U,KC_BTN1,                KC_HOME,KC_PGDN,KC_PGUP,KC_END,KC_ARRR,KC_NO,
   //|------+------+-------+-------+-------+-------+------|  |------+------+------+------+------+------+------|
                                     KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT
                                   //`--------------------'  `--------------------'
@@ -359,6 +361,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           if (timer_elapsed(my_colon_timer) < TAPPING_TERM) {
             SEND_STRING(":"); // Change the character(s) to be sent on tap here
           }
+        }
+        return false;
+    case KC_EPIPE:
+        if (record->event.pressed) {
+          SEND_STRING("|>");
+        }
+        return false;
+    case KC_ARRR:
+        if (record->event.pressed) {
+          SEND_STRING("->");
         }
         return false;
     case RGBRST:
