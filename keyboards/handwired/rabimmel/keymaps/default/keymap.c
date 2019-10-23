@@ -9,10 +9,10 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NORMAL_LAYER]= LAYOUT(
-	KC_1, KC_2, KC_3,
-	KC_4, KC_5, KC_6,
-	KC_7, KC_8, KC_9,
-	RESET,KC_0, KC_SPC
+	RGB_MOD,  RGB_HUI, RGB_SPI,
+	RGB_RMOD, RGB_HUD, RGB_SPD,
+	RGB_TOG,  KC_8, KC_9,
+      KC_ASTR,KC_1, KC_HASH
     ),
 };
 
