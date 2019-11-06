@@ -39,6 +39,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RETRO_TAPPING
 #define IGNORE_MOD_TAP_INTERRUPT
 
+#define QMK_ESC_OUTPUT F4 // usually COL
+#define QMK_ESC_INPUT D4 // usually ROW
+#define QMK_LED B0
+
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
     #define RGBLED_NUM 27
