@@ -65,10 +65,10 @@ enum {
 };
 
 int cur_dance(qk_tap_dance_state_t *state);
-void racl_finished(qk_tap_dance_state_t *state, void *user_data);
-void racl_reset(qk_tap_dance_state_t *state, void *user_data);
-/* void lscs_finished(qk_tap_dance_state_t *state, void *user_data); */
-/* void lscs_reset(qk_tap_dance_state_t *state, void *user_data); */
+void lscs_finished(qk_tap_dance_state_t *state, void *user_data);
+void lscs_reset(qk_tap_dance_state_t *state, void *user_data);
+void lscs_finished(qk_tap_dance_state_t *state, void *user_data);
+void lscs_reset(qk_tap_dance_state_t *state, void *user_data);
 /* void rscs_finished(qk_tap_dance_state_t *state, void *user_data); */
 /* void rscs_reset(qk_tap_dance_state_t *state, void *user_data); */
 /* void lwr_finished(qk_tap_dance_state_t *state, void *user_data); */
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
     KC_LCTL,  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,                   KC_H,  KC_J,  KC_K,  KC_L, KC_SCLN,KC_QUOT,
   //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
-    KC_LSPO,  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,
+    TD(LSCS),  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH,TD(RSCS),
   //|------+------+------+------+------+------+------|  |------+------+------+-------+------+-------+--------|
                          KC_LGESC,LOWER, LSFT_T(KC_SPC),   RCTL_T(KC_ENT), RAISE, TD(RACL)
                               //`--------------------'  `--------------------'
@@ -484,11 +484,7 @@ int cur_dance(qk_tap_dance_state_t *state) {
   else return 8; //magic number. At some point this method will expand to work for more presses
 }
 
-//instanalize an instance of 'tap' for the 'x' tap dance.
-static tap racl_tap_state = {
-  .is_press_action = true,
-  .state = 0
-};
+static tap racl_tap_state = { .is_press_action = true, .state = 0 };
 
 void racl_finished(qk_tap_dance_state_t *state, void *user_data) {
   racl_tap_state.state = cur_dance(state);
@@ -510,8 +506,44 @@ void racl_reset(qk_tap_dance_state_t *state, void *user_data) {
   racl_tap_state.state = 0;
 }
 
+// Dancing Space Cadet Shift
+static tap lscs_tap_state = { .is_press_action = true, .state = 0 };
+static tap rscs_tap_state = { .is_press_action = true, .state = 0 };
+
+void lscs_finished(qk_tap_dance_state_t *state, void *user_data) {
+  lscs_tap_state.state = cur_dance(state);
+  switch(lscs_tap_state.state) {
+    case SINGLE_TAP: SEND_STRING("("); break;
+    case SINGLE_HOLD: register_mods(MOD_BIT(KC_LSFT)); break;
+    case DOUBLE_TAP: SEND_STRING("["); break;
+    case TRIPLE_TAP: SEND_STRING("{"); break;
+  }
+}
+
+void lscs_reset(qk_tap_dance_state_t *state, void *user_data) {
+  unregister_mods(MOD_BIT(KC_LSFT));;
+  lscs_tap_state.state = 0;
+}
+
+void rscs_finished(qk_tap_dance_state_t *state, void *user_data) {
+  rscs_tap_state.state = cur_dance(state);
+  switch(rscs_tap_state.state) {
+    case SINGLE_TAP: SEND_STRING(")"); break;
+    case SINGLE_HOLD: register_mods(MOD_BIT(KC_RSFT)); break;
+    case DOUBLE_TAP: SEND_STRING("]"); break;
+    case TRIPLE_TAP: SEND_STRING("}"); break;
+  }
+}
+
+void rscs_reset(qk_tap_dance_state_t *state, void *user_data) {
+  unregister_mods(MOD_BIT(KC_RSFT));
+  rscs_tap_state.state = 0;
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [RACL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL,racl_finished, racl_reset)
+  [RACL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL,racl_finished, racl_reset),
+  [LSCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL,lscs_finished, lscs_reset),
+  [RSCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL,rscs_finished, rscs_reset)
 };
 
 #ifdef RGB_MATRIX_ENABLE
