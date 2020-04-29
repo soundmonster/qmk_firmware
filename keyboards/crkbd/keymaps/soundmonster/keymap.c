@@ -69,8 +69,8 @@ void lscs_finished(qk_tap_dance_state_t *state, void *user_data);
 void lscs_reset(qk_tap_dance_state_t *state, void *user_data);
 void lscs_finished(qk_tap_dance_state_t *state, void *user_data);
 void lscs_reset(qk_tap_dance_state_t *state, void *user_data);
-/* void rscs_finished(qk_tap_dance_state_t *state, void *user_data); */
-/* void rscs_reset(qk_tap_dance_state_t *state, void *user_data); */
+void rscs_finished(qk_tap_dance_state_t *state, void *user_data);
+void rscs_reset(qk_tap_dance_state_t *state, void *user_data);
 /* void lwr_finished(qk_tap_dance_state_t *state, void *user_data); */
 /* void lwr_reset(qk_tap_dance_state_t *state, void *user_data); */
 /* void rse_finished(qk_tap_dance_state_t *state, void *user_data); */
@@ -389,25 +389,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_off(_ADJUST);
         }
         return false;
-    case KC_RACL:
-        if (record->event.pressed) {
-          my_colon_timer = timer_read();
-          register_code(KC_RALT);
-        } else {
-          unregister_code(KC_RALT);
-          if (timer_elapsed(my_colon_timer) < TAPPING_TERM) {
-            SEND_STRING(":"); // Change the character(s) to be sent on tap here
-          }
-        }
-        return false;
     case KC_EPIPE:
         if (record->event.pressed) {
-          SEND_STRING("|>");
+          SEND_STRING("|> ");
         }
         return false;
     case KC_ARRR:
         if (record->event.pressed) {
-          SEND_STRING("->");
+          SEND_STRING("-> ");
         }
         return false;
     case RGBRST:
@@ -499,7 +488,7 @@ void racl_reset(qk_tap_dance_state_t *state, void *user_data) {
   racl_tap_state.state = 0;
 }
 
-// Dancing Space Cadet Shift
+// Dancing Space Cadet Shift ( [ {
 static tap lscs_tap_state = { .is_press_action = true, .state = 0 };
 static tap rscs_tap_state = { .is_press_action = true, .state = 0 };
 
@@ -534,9 +523,9 @@ void rscs_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [RACL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL,racl_finished, racl_reset),
-  [LSCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL,lscs_finished, lscs_reset),
-  [RSCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL,rscs_finished, rscs_reset)
+  [RACL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, racl_finished, racl_reset),
+  [LSCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lscs_finished, lscs_reset),
+  [RSCS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rscs_finished, rscs_reset)
 };
 
 #ifdef RGB_MATRIX_ENABLE
