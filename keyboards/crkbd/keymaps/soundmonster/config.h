@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD2
 
 // #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 175
+#define TAPPING_TERM 120
 #define RETRO_TAPPING
 #define IGNORE_MOD_TAP_INTERRUPT
 
@@ -102,7 +102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
-// #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
+#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
@@ -110,5 +110,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define DISABLE_RGB_MATRIX_SPLASH
 #   define DISABLE_RGB_MATRIX_MULTISPLASH
 #   define DISABLE_RGB_MATRIX_SOLID_SPLASH
-#   define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH
+// #   define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
