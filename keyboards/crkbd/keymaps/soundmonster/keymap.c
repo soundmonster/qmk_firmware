@@ -318,11 +318,12 @@ void oled_task_user(void) {
 
 #endif
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
 #ifdef OLED_DRIVER_ENABLE
+  if (record->event.pressed) {
         oled_timer = timer_read32();
-#endif
   }
+#endif
+  static uint16_t racl_timer;
 
   switch (keycode) {
     case LOWER:
@@ -352,7 +353,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case KC_RACL:
         if (record->event.pressed) {
-          SEND_STRING(":");
+          racl_timer = timer_read();
+          register_mods(MOD_BIT(KC_RALT));
+        } else {
+          unregister_mods(MOD_BIT(KC_RALT));
+          if(timer_elapsed(racl_timer) < TAPPING_TERM) {
+            tap_code16(KC_COLON);
+          }
         }
         return false;
     case KC_EPIPE:
