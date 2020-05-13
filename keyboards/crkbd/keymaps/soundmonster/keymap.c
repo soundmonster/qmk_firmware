@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+-------+-------+-------+-------|                |------+------+------+------+------+------|
     KC_LSFT, KC_NO, KC_NO , KC_NO , KC_Y  , KC_NO ,                KC_HOME,KC_PGDN,KC_PGUP,KC_END,KC_ARRR,KC_NO,
   //|------+------+-------+-------+-------+-------+------|  |------+------+------+------+------+------+------|
-                                    KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT
+                         KC_LGESC,LOWER, LSFT_T(KC_SPC),   RCTL_T(KC_ENT), RAISE, KC_RACL
                                   //`--------------------'  `--------------------'
   ),
 
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
     KC_LSFT, KC_F6, KC_F7, KC_F8, KC_F9,KC_F10,                KC_UNDS,KC_PLUS,KC_LBRC,KC_RBRC,KC_BSLS,KC_TILD,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT
+                         KC_LGESC,LOWER, LSFT_T(KC_SPC),   RCTL_T(KC_ENT), RAISE, KC_RACL
                               //`--------------------'  `--------------------'
   ),
 
