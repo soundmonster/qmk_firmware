@@ -15,4 +15,4 @@
 
 * `make crkbd:soundmonster:dfu` to build and flash the left half
 * `make crkbd:soundmonster:dfu RGB_MATRIX_SPLIT_RIGHT=yes` to build and flash the right half
-* This requires DFU support. You may want to change the bootloader back to `catarina` in `rules.mk`.
+* This keymap expects a DFU bootloader on the promicros in your Corne. While DFU is supposedly better, you may just as well stick to the Catarina bootloader that is installed on most promicros by default: change the `BOOTLADER` setting to `catarina` in `rules.mk`.
