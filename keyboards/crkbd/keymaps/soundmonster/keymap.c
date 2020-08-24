@@ -65,9 +65,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------+------------+-------------+-------------+-------------+------.   ,------+--------------+---------------+---------------+---------------+-------.
     KC_ESC,      KC_EXLM,      KC_AT,      KC_HASH,        KC_DLR,  KC_PERC,   KC_CIRC,    KC_AMPR,      KC_ASTR,         KC_LPRN,       KC_RPRN,     KC_BSPC,
   //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
-    KC_LCTL, LGUI_T(KC_F1),RALT_T(KC_F2),LCTL_T(KC_F3),LSFT_T(KC_F4),KC_F5,    KC_MINS,RSFT_T(KC_EQL),RCTL_T(KC_LCBR),RALT_T(KC_RCBR),RGUI_T(KC_PIPE),KC_GRV,
+    KC_LCTL, LGUI_T(KC_F1),RALT_T(KC_F2),LCTL_T(KC_F3),LSFT_T(KC_F4),KC_F5,    KC_MINS,RSFT_T(KC_EQL),RCTL_T(KC_LBRC),RALT_T(KC_RBRC),RGUI_T(KC_BSLS),KC_GRV,
   //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
-    KC_LSFT,     KC_F6,    LALT_T(KC_F7),   KC_F8,         KC_F9,    KC_F10,   KC_UNDS,   KC_PLUS,        KC_LBRC,    LALT_T(KC_RBRC),    KC_BSLS,    KC_TILD,
+    KC_LSFT,     KC_F6,    LALT_T(KC_F7),   KC_F8,         KC_F9,    KC_F10,   KC_UNDS,   KC_PLUS,        KC_LCBR,        KC_CRBR,    KC_PIPE,    KC_TILD,
   //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
                                        KC_LGESC, LOWER, LSFT_T(KC_SPC),       RCTL_T(KC_ENT), RAISE, KC_RALT
                                      //`------------------------------'       `-----------------------------'

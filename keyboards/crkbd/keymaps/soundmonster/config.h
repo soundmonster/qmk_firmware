@@ -34,10 +34,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
-// #define TAPPING_FORCE_HOLD
+// Chording/home row mods
 #define TAPPING_TERM 150
-#define RETRO_TAPPING
+// Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+// #define TAPPING_FORCE_HOLD
+
+// Recommended for heavy chording.
+#define QMK_KEYS_PER_SCAN 4
+
+// #define RETRO_TAPPING
+// #define IGNORE_MOD_TAP_INTERRUPT
 
 #define QMK_ESC_OUTPUT F4 // usually COL
 #define QMK_ESC_INPUT D4 // usually ROW
