@@ -33,47 +33,44 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   ADJUST,
-  RGBRST,
-  KC_RACL, // right alt / colon
-  KC_EPIPE, // Elixir pipe |>
-  KC_ARRR // Right arrow ->
+  RGBRST
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
-  //,-----------------------------------------.                ,---------------------------------------------.
-     KC_TAB,  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,                   KC_Y,  KC_U,  KC_I,  KC_O,  KC_P,  KC_BSPC,
-  //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
-    KC_LCTL,  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,                   KC_H,  KC_J,  KC_K,  KC_L, KC_SCLN,KC_QUOT,
-  //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
-    KC_LSPO,  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,
-  //|------+------+------+------+------+------+------|  |------+------+------+-------+------+-------+--------|
-                         KC_LGESC,LOWER, LSFT_T(KC_SPC),   RCTL_T(KC_ENT), RAISE, KC_RACL
-                              //`--------------------'  `--------------------'
+  //,--------+------------+------------+------------+------------+------.  ,------+------------+------------+------------+---------------+--------.
+     KC_TAB,       KC_Q,       KC_W,        KC_E,        KC_R,     KC_T,      KC_Y,     KC_U,        KC_I,        KC_O,         KC_P,      KC_BSPC,
+  //|--------+------------+------------+------------+------------+------|   |------+------------+------------+------------+---------------+--------|
+     KC_LCTL, LGUI_T(KC_A),RALT_T(KC_S),LCTL_T(KC_D),LSFT_T(KC_F), KC_G,      KC_H, RSFT_T(KC_J),RCTL_T(KC_K),RALT_T(KC_L),RGUI_T(KC_SCLN),KC_QUOT,
+  //|--------+------------+------------+------------+------------+------|   |------+------------+------------+------------+---------------+--------|
+     KC_LSPO,      KC_Z,   LALT_T(KC_X),    KC_C,        KC_V,     KC_B,      KC_N,     KC_M,      KC_COMM,  LALT_T(KC_DOT),    KC_SLSH,   KC_RSPC,
+  //|--------+------------+------------+------------+------------+------|   |------+------------+------------+------------+---------------+--------|
+                                       KC_LGESC, LOWER, LSFT_T(KC_SPC),       RCTL_T(KC_ENT), RAISE, KC_RALT
+                                     //`------------------------------'       `-----------------------------'
   ),
 
   [_LOWER] = LAYOUT(
-  //,---------------------------------------------.                ,-----------------------------------------.
-     KC_ESC,  KC_1, KC_2,   KC_3,   KC_4,   KC_5,                    KC_6,  KC_7,  KC_8,  KC_9,  KC_0, KC_DEL,
-  //|------+------+-------+-------+-------+-------|                |------+------+------+------+------+------|
-    KC_LCTL, KC_NO, KC_NO , KC_NO ,KC_RALT, KC_NO ,                KC_LEFT,KC_DOWN,KC_UP,KC_RIGHT,KC_EPIPE,KC_NO,
-  //|------+------+-------+-------+-------+-------|                |------+------+------+------+------+------|
-    KC_LSFT, KC_NO, KC_NO , KC_NO , KC_Y  , KC_NO ,                KC_HOME,KC_PGDN,KC_PGUP,KC_END,KC_ARRR,KC_NO,
-  //|------+------+-------+-------+-------+-------+------|  |------+------+------+------+------+------+------|
-                         KC_LGESC,LOWER, LSFT_T(KC_SPC),   RCTL_T(KC_ENT), RAISE, KC_RACL
-                                  //`--------------------'  `--------------------'
+  //,--------+------------+------------+------------+------------+------.   ,------+---------------+-------------+----------------+---------------+--------.
+     KC_ESC,      KC_1,        KC_2,        KC_3,        KC_4,     KC_5,      KC_6,     KC_7,            KC_8,          KC_9,           KC_0,       KC_DEL,
+  //|--------+------------+------------+------------+------------+------|   |------+---------------+-------------+----------------+---------------+--------|
+     KC_LCTL,    KC_LGUI,     KC_RALT,     KC_LCTL,     KC_LSFT,  KC_NO,    KC_LEFT,RSFT_T(KC_DOWN),RCTL_T(KC_UP),RALT_T(KC_RIGHT),    KC_RGUI,     KC_NO,
+  //|--------+------------+------------+------------+------------+------|   |------+---------------+-------------+----------------+---------------+--------|
+     KC_LSFT,     KC_NO,      KC_LALT,      KC_NO,       KC_Y,    KC_NO,    KC_HOME,     KC_PGDN,      KC_PGUP,    LALT_T(KC_END),      KC_NO,      KC_NO,
+  //|--------+------------+------------+------------+------------+------|   |------+---------------+-------------+----------------+---------------+--------|
+                                       KC_LGESC, LOWER, LSFT_T(KC_SPC),       RCTL_T(KC_ENT), RAISE, KC_RALT
+                                     //`------------------------------'       `-----------------------------'
   ),
 
   [_RAISE] = LAYOUT(
-  //,-----------------------------------------.                ,-----------------------------------------.
-     KC_ESC,KC_EXLM,KC_AT,KC_HASH,KC_DLR,KC_PERC,              KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_BSPC,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    KC_LCTL, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,                KC_MINS,KC_EQL,KC_LCBR,KC_RCBR,KC_PIPE,KC_GRV,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    KC_LSFT, KC_F6, KC_F7, KC_F8, KC_F9,KC_F10,                KC_UNDS,KC_PLUS,KC_LBRC,KC_RBRC,KC_BSLS,KC_TILD,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                         KC_LGESC,LOWER, LSFT_T(KC_SPC),   RCTL_T(KC_ENT), RAISE, KC_RACL
-                              //`--------------------'  `--------------------'
+  //,--------+------------+-------------+-------------+-------------+------.   ,------+--------------+---------------+---------------+---------------+-------.
+    KC_ESC,      KC_EXLM,      KC_AT,      KC_HASH,        KC_DLR,  KC_PERC,   KC_CIRC,    KC_AMPR,      KC_ASTR,         KC_LPRN,       KC_RPRN,     KC_BSPC,
+  //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
+    KC_LCTL, LGUI_T(KC_F1),RALT_T(KC_F2),LCTL_T(KC_F3),LSFT_T(KC_F4),KC_F5,    KC_MINS,RSFT_T(KC_EQL),RCTL_T(KC_LCBR),RALT_T(KC_RCBR),RGUI_T(KC_PIPE),KC_GRV,
+  //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
+    KC_LSFT,     KC_F6,    LALT_T(KC_F7),   KC_F8,         KC_F9,    KC_F10,   KC_UNDS,   KC_PLUS,        KC_LBRC,    LALT_T(KC_RBRC),    KC_BSLS,    KC_TILD,
+  //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
+                                       KC_LGESC, LOWER, LSFT_T(KC_SPC),       RCTL_T(KC_ENT), RAISE, KC_RALT
+                                     //`------------------------------'       `-----------------------------'
   ),
 
   [_ADJUST] = LAYOUT(
@@ -323,8 +320,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         oled_timer = timer_read32();
   }
 #endif
-  static uint16_t racl_timer;
-
   switch (keycode) {
     case LOWER:
       if (record->event.pressed) {
@@ -349,27 +344,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(_ADJUST);
         } else {
           layer_off(_ADJUST);
-        }
-        return false;
-    case KC_RACL:
-        if (record->event.pressed) {
-          racl_timer = timer_read();
-          register_mods(MOD_BIT(KC_RALT));
-        } else {
-          unregister_mods(MOD_BIT(KC_RALT));
-          if(timer_elapsed(racl_timer) < TAPPING_TERM) {
-            tap_code16(KC_COLON);
-          }
-        }
-        return false;
-    case KC_EPIPE:
-        if (record->event.pressed) {
-          SEND_STRING("|> ");
-        }
-        return false;
-    case KC_ARRR:
-        if (record->event.pressed) {
-          SEND_STRING("-> ");
         }
         return false;
     case RGBRST:
