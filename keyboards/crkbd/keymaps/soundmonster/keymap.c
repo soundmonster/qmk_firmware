@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+------------+------------+------------+------------+------|   |------+------------+------------+------------+---------------+--------|
      KC_LPRN,      KC_Z,   LALT_T(KC_X),    KC_C,        KC_V,     KC_B,      KC_N,     KC_M,      KC_COMM,  LALT_T(KC_DOT),    KC_SLSH,   KC_RPRN,
   //|--------+------------+------------+------------+------------+------|   |------+------------+------------+------------+---------------+--------|
-                                     LT(_RAISE, KC_ESC), LOWER, KC_SPC,       KC_ENT, RAISE, LT(_LOWER, KC_TAB)
+                                     LT(_RAISE, KC_ESC), LOWER, KC_SPC,     RSFT_T(KC_ENT), RAISE, LT(_LOWER, KC_TAB)
                                      //`------------------------------'       `-----------------------------'
   ),
 
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+------------+------------+------------+------------+------|   |------+---------------+-------------+----------------+---------------+--------|
      KC_LSFT,     KC_NO,      KC_LALT,      KC_NO,       KC_Y,    KC_NO,    KC_HOME,     KC_PGDN,      KC_PGUP,    LALT_T(KC_END),      KC_NO,      KC_NO,
   //|--------+------------+------------+------------+------------+------|   |------+---------------+-------------+----------------+---------------+--------|
-                                     LT(_RAISE, KC_ESC), LOWER, KC_SPC,       KC_ENT, RAISE, LT(_LOWER, KC_TAB)
+                                     LT(_RAISE, KC_ESC), LOWER, KC_SPC,       RSFT_T(KC_ENT), RAISE, LT(_LOWER, KC_TAB)
                                      //`------------------------------'       `-----------------------------'
   ),
 
@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
     KC_LSFT,     KC_F6,    LALT_T(KC_F7),   KC_F8,         KC_F9,    KC_F10,   KC_UNDS,   KC_PLUS,        KC_LCBR,        KC_RCBR,        KC_PIPE,    KC_TILD,
   //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
-                                     LT(_RAISE, KC_ESC), LOWER, KC_SPC,       KC_ENT, RAISE, LT(_LOWER, KC_TAB)
+                                     LT(_RAISE, KC_ESC), LOWER, KC_SPC,       RSFT_T(KC_ENT), RAISE, LT(_LOWER, KC_TAB)
                                      //`------------------------------'       `-----------------------------'
   ),
 
