@@ -6,13 +6,21 @@
   * Proper orientation
   * Graphic layer indicator ↑ ↓
   * Graphic modifier indicator ⌘ ⇧ ⌥  ⌃
-* Similar enough to the default keymap so you can easily port your custom keymap to it
-* Mac-friendly (Command and Option on the thumbs)
-* Vim-friendly (Esc, `:` and Ctrl on the thumbs)
+* Home-row modifiers, heavily inspired by [Miryoku](https://github.com/manna-harbour/miryoku/blob/master/README.org)
+* VIm friendly, Mac friendly
 * Full per-key RGB Matrix support out of the box (you still have to go through the nightmare of soldering yourself though 😉)
 
 ### Build instructions
 
 * `make crkbd:soundmonster:dfu` to build and flash the left half
 * `make crkbd:soundmonster:dfu RGB_MATRIX_SPLIT_RIGHT=yes` to build and flash the right half
-* This keymap expects a DFU bootloader on the promicros in your Corne. While DFU is supposedly better, you may just as well stick to the Catarina bootloader that is installed on most promicros by default: change the `BOOTLADER` setting to `catarina` in `rules.mk`.
+* This keymap expects a DFU bootloader on the ProMicros in your Corne. While DFU is supposedly better, you may just as well stick to the Catarina bootloader that is installed on most promicros by default: change the `BOOTLADER` setting to `catarina` in `rules.mk`.
+  * The Elite-C controllers run DFU by default
+* TODO: how did I set the handedness in the EEPROM?
+
+### Flashing the bootloader
+
+* Get an ISP, e.g. another ProMicro
+* Follow the [QMK docs on ISP flashing](https://docs.qmk.fm/#/isp_flashing_guide?id=isp-flashing-guide) for details on how to wire up the ISP to your controller
+* `make crkbd:soundmonster:production`
+* `avrdude -c avrisp -P /dev/tty.usbmodem123451 -p atmega32u4 -U flash:w:crkbd_rev1_legacy_soundmonster_bootloader.hex:i -U lfuse:w:0x5E:m -U hfuse:w:0x99:m -U efuse:w:0xC3:m`
