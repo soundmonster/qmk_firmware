@@ -16,10 +16,9 @@
 * `make crkbd:soundmonster:dfu RGB_MATRIX_SPLIT_RIGHT=yes` to build and flash the right half
 * This keymap uses `EE_HANDS` to assign the handedness of the left and right side of the keyboard.
   This allows to plug the USB cable into any half without mirroring the keymap.
-  Flash the appriate flags to each half with `make crkbd:soundmonster:dfu-split-left` and `make crkbd:soundmonster:dfu-split-right` respectively.
+  Flash the appropriate flags to each half with `make crkbd:soundmonster:dfu-split-left` and `make crkbd:soundmonster:dfu-split-right` respectively.
 * This keymap expects a DFU bootloader on the ProMicros in your Corne. While DFU is supposedly better, you may just as well stick to the Catarina bootloader that is installed on most promicros by default: change the `BOOTLADER` setting to `catarina` in `rules.mk`.
   * The Elite-C controllers run DFU by default
-* TODO: how did I set the handedness in the EEPROM?
 
 ### Flashing the bootloader
 
